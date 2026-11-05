@@ -1,0 +1,27 @@
+qn_type_id,module,cat_id,module_name,subcat_id,subtopic_name
+a_ip_01,A,ip,Information Processing,01,Introduction to Information Processing
+a_ip_02,A,ip,Information Processing,02,Data Organisation and Data Control
+a_ip_03,A,ip,Information Processing,03,"Number System, Text Encoding, Barcode Encoding"
+a_ip_04,A,ip,Information Processing,04,"Analog and Digital, Multimedia"
+a_ip_05,A,ip,Information Processing,05,Spreadsheet
+a_ip_06,A,ip,Information Processing,06,Database
+b_cs_01,B,cs,Computer System Fundamentals,01,Input and Output Devices
+b_cs_02,B,cs,Computer System Fundamentals,02,System Units and Processing Unit
+b_cs_03,B,cs,Computer System Fundamentals,03,Storage Devices
+b_cs_04,B,cs,Computer System Fundamentals,04,Types of Software
+b_cs_05,B,cs,Computer System Fundamentals,05,Modes of Operation
+c_ia_01,C,ia,Internet and Its Applications,01,Computer Networks and Hardware
+c_ia_02,C,ia,Internet and Its Applications,02,Internet Protocols
+c_ia_03,C,ia,Internet and Its Applications,03,Internet Services and Applications
+c_ia_04,C,ia,Internet and Its Applications,04,Elementary Web Authoring
+c_ia_05,C,ia,Internet and Its Applications,05,Network Security and Privacy Threats
+c_ia_06,C,ia,Internet and Its Applications,06,Network Security Measures
+d_cp_01,D,cp,Computational Thinking and Programming,01,Problem-Formulation and Analysis
+d_cp_02,D,cp,Computational Thinking and Programming,02,Data Type
+d_cp_03,D,cp,Computational Thinking and Programming,03,Control Structures
+d_cp_04,D,cp,Computational Thinking and Programming,04,Array
+d_cp_05,D,cp,Computational Thinking and Programming,05,Program Testing and Debugging
+e_si_01,E,si,Social Implications,01,Technological Innovations
+e_si_02,E,si,Social Implications,02,Health Issues
+e_si_03,E,si,Social Implications,03,Ethical Issues
+e_si_04,E,si,Social Implications,04,Intellectual Property

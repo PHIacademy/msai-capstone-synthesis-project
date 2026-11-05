@@ -1,0 +1,38 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Environments and caches
+.venv/
+.venv2/
+.pytest_cache/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Past-paper data (HKEAA material): on Kaggle, not in git
+data/final_dataset.csv
+data/question/
+data/ict_curriculum.md
+
+# Governed store (holds the teacher's review decisions)
+data/state.sqlite
+
+# Returned review sheets (carry the teacher's name)
+outputs/blind_label_sheet_filled.xlsx
+outputs/candidate_review_sheet_filled.xlsx
+outputs/label_review_sheet_filled.xlsx
+
+# Not part of the submission
+mc_questions.xlsx
+
+# Old versions: keep only the frozen full notebook v0.95
+old version/*
+!old version/integrated_system_v0.95.ipynb

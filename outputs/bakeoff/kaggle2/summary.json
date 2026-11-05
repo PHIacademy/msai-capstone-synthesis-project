@@ -1,0 +1,31 @@
+{
+  "tinyllama_lora_c5": {
+    "candidates": 18,
+    "valid_format": 18,
+    "sampling": {
+      "temperature": 0.8,
+      "top_p": 0.9,
+      "max_new_tokens": 260,
+      "seed": 42
+    }
+  },
+  "haiku_prompted": {
+    "candidates": 18,
+    "valid_format": 18,
+    "sampling": {
+      "temperature": "API default",
+      "applied_by": "api_default",
+      "max_tokens": 700
+    }
+  },
+  "gemma4_e4b_prompted": {
+    "candidates": 18,
+    "valid_format": 18,
+    "sampling": {
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "max_new_tokens": 700,
+      "seed": null
+    }
+  }
+}

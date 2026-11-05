@@ -1,0 +1,51 @@
+{
+  "_comment": "Place at config/generators.json. Three backends only (v0.72). The Hugging Face id for gemma4 was checked on 2026-10-23 against the model page. Not yet loaded or run here. Credentials stay in .env, never here; api_key_env / api_base_env only name the variables. Module names always follow ict_curriculum.md, including in the legacy C5 prompt.",
+  "generators": [
+    {
+      "name": "tinyllama_lora_c5",
+      "kind": "hf",
+      "model_id": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "adapter_path": "models/c5_adapter",
+      "prompt_style": "legacy_c5",
+      "legacy_template": "Module: {module_name}\nType: {qn_type}\n\nQuestion:",
+      "temperature": 0.8,
+      "top_p": 0.9,
+      "max_new_tokens": 260,
+      "seed": 42,
+      "pad_with_unk": true,
+      "notes": "Re-created C5 adapter (LoRA r=16, alpha 32; val loss 0.957 matched the report). The original adapter was lost. Report the old 18/20 and 1-in-10 figures only as history; re-score this adapter in the bake-off. Needs a sub-topic (the C5 type id) in every target. Module text is the official curriculum title, identical to C5's CORE_NAMES, so the adapter was trained on exactly this prompt and needs no re-training; {qn_type} is the sub-topic tag, as in C5's module_name(qn_type)."
+    },
+    {
+      "name": "gemma4_e4b_prompted",
+      "kind": "hf",
+      "model_id": "google/gemma-4-E4B-it",
+      "prompt_style": "structured",
+      "n_shots": 3,
+      "dtype": "float16",
+      "seed": 42,      
+      "auto_class": "AutoModelForCausalLM",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "notes": "The one open prompted model. Verified on the Hugging Face model card: official Google repo, Apache 2.0, 4.5B effective / 8B with embeddings (about 16 GB in fp16, so expect it to shard over the two T4s). Card loads it with AutoModelForCausalLM for text, or AutoModelForMultimodalLM if that fails. Thinking is off. Untested here: confirm the tokenizer's apply_chat_template works for the text-only path."
+    },
+    {
+      "name": "haiku_prompted",
+      "kind": "anthropic",
+      "model_id": "claude-haiku-4-5-20251001",
+      "prompt_style": "structured",
+      "n_shots": 3,
+      "temperature": 0.7,
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "api_base_env": "ANTHROPIC_BASE_URL",
+      "api_base_default": "https://claude.vocareum.com",
+      "notes": "Managed baseline. Called through the Anthropic SDK, as in the key test (anthropic.Anthropic with base_url and api_key, then messages.create): the key is read from ANTHROPIC_API_KEY and the base URL from ANTHROPIC_BASE_URL, defaulting to the Vocareum proxy. Locally the key sits in .env; on Kaggle it is a Kaggle secret of the same name."
+    },
+    {
+      "name": "offline_cache",
+      "kind": "cache",
+      "cache_path": "data/cache/candidates_demo.jsonl",
+      "notes": "Replay for the Streamlit demo and the defence. Each JSONL row needs module and raw; subtopic and difficulty_band are optional and used to filter by target."
+    }
+  ]
+}
