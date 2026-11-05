@@ -20,7 +20,15 @@ Thumbs.db
 # Past-paper data (HKEAA material): on Kaggle, not in git
 data/final_dataset.csv
 data/question/
+data/answer/
 data/ict_curriculum.md
+data/data_preparation.py
+data/dataset_preparation_pipeline.md
+data/DSE_MC_Classification_names_aligned.xlsx
+data/exam_questions.csv
+data/final_dataset.csv
+data/ict_curriculum.md
+data/merge_dataset.py
 
 # Governed store (holds the teacher's review decisions)
 data/state.sqlite
@@ -36,3 +44,7 @@ mc_questions.xlsx
 # Old versions: keep only the frozen full notebook v0.95
 old version/*
 !old version/integrated_system_v0.95.ipynb
+
+# mmd
+architecture_diagram.mmd
+tutor_agent_architecture.mmd
