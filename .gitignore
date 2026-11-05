@@ -41,10 +41,12 @@ outputs/label_review_sheet_filled.xlsx
 # Not part of the submission
 mc_questions.xlsx
 
-# Old versions: keep only the frozen full notebook v0.95
+# Old versions
 old version/*
-!old version/integrated_system_v0.95.ipynb
 
 # mmd
 architecture_diagram.mmd
 tutor_agent_architecture.mmd
+
+# report
+module_summary.docx
