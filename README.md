@@ -1,6 +1,6 @@
 # Industry-Integrated AI Systems Synthesis: A Governed Question Lifecycle for HKDSE ICT Paper 1A
 
-MSc in AI, Capstone #7 Final Synthesis Project
+MSc in AI, Capstone #7 Final Synthesis Project.
 Repository: https://github.com/PHIacademy/msai-capstone-synthesis-project
 
 The system classifies, extends, checks and serves multiple-choice practice questions for the HKDSE ICT Paper 1A under teacher governance. The primary artifact is the notebook `integrated_system_v1.7.ipynb`. The reusable logic lives in `src/`, and the Streamlit chat page in `app/` calls the same code.
