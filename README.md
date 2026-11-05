@@ -61,8 +61,6 @@ C4 (Deep Learning) is deliberately not used; the reason is in Section 2.1 of the
 |   |-- candidate_review.py          candidate review sheet and import
 |   `-- tutor/                       Tutor, rule router, Orchestrator and Explainer
 |-- tests/                           15 test files (254 tests)
-`-- old version/
-    `-- integrated_system_v0.95.ipynb   the full notebook, frozen as the reference
 ```
 
 ## Setup
