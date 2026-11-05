@@ -13,8 +13,6 @@ It integrates methods from four earlier capstones:
 | C5 Generative AI | Candidate generators and the bake-off (LoRA TinyLlama, Gemma 4 E4B, Claude Haiku) |
 | C6 Agentic AI | The student-side tutor: a rule router, and a language-model Orchestrator with one Explainer worker |
 
-C4 (Deep Learning) is deliberately not used; the reason is in Section 2.1 of the notebook.
-
 ## Links
 
 - Kaggle dataset (the data files not kept in this repository): [capstone7_data](https://www.kaggle.com/datasets/stansir/capstone7-data)
@@ -28,8 +26,9 @@ C4 (Deep Learning) is deliberately not used; the reason is in Section 2.1 of the
 |-- requirements.txt                 direct dependencies (no GPU libraries)
 |-- .gitignore
 |-- integrated_system_v1.7.ipynb     the submission notebook (executed)
-|-- architecture_diagram.png         system architecture
-|-- tutor_agent_architecture.mmd     tutor and agents diagram (Mermaid source)
+|-- kaggle_bakeoff.ipynb             Kaggle notebook that ran the generator bake-off (executed)
+|-- module_summary.pdf               the Reflective Synthesis Paper (PDF)
+|-- architecture_diagram.png         system architecture diagram
 |-- tutor_agent_architecture.png     tutor and agents diagram
 |-- app/
 |   `-- streamlit_app.py             chat page for the student
@@ -91,6 +90,12 @@ All paths are relative to the project root, so start every command from it.
   ```
 
   The page reads `data/state.sqlite` read-only. "Rules" mode needs no key; "Model" mode is offered only when `ANTHROPIC_API_KEY` is set.
+- **Bake-off (optional).** `kaggle_bakeoff.ipynb` generated the 54 candidates on Kaggle. It trains nothing; it only generates text. The stored outputs are from the run `kaggle2`, and the repository already holds its results, so this step is only needed to repeat the run.
+  1. Open the notebook on Kaggle with the accelerator set to GPU T4 x2 and Internet on.
+  2. Attach the data dataset ([capstone7_data](https://www.kaggle.com/datasets/stansir/capstone7-data); it supplies `final_dataset.csv`, `ict_curriculum.md` and `taxonomy.csv`) and a private dataset holding one copy of each of `src/data.py`, `src/generator.py`, `config/generators.json`, `scripts/bakeoff_runner.py`, `models/c5_adapter/adapter_config.json` and `models/c5_adapter/adapter_model.safetensors`.
+  3. Add the Kaggle secret `ANTHROPIC_API_KEY` (needed for Haiku). `HF_TOKEN` is optional and is only needed if a model page asks for its terms to be accepted.
+  4. Run the cells from top to bottom. The notebook installs its own packages, runs a smoke test with one candidate per backend, then runs the six targets with three candidates each through the three backends (54 candidates). If Gemma 4 fails to load, the notebook has one optional cell that upgrades `transformers`; run it, restart the session and start again from the top.
+  5. Download `bakeoff_bundle.zip` from the notebook's output panel (one JSONL file per backend, `summary.json` with the sampling used, and `environment.json`). Place its files in `outputs/bakeoff/<run id>/`, as for `kaggle2`, and run the bake-off sections of the main notebook (Sections 4.7 and 4.8) to store the candidates and run the gate.
 - **Tests.**
 
   ```
@@ -101,7 +106,7 @@ All paths are relative to the project root, so start every command from it.
 
 ## What is and is not reproducible here
 
-- The tests use a stub client and no network. They check the logic of the system (governance rules, the gate, the parser, refusals of bad sheets, the tutor's safeguards), not the behaviour of the live models. The bake-off ran on Kaggle with two T4 GPUs and an API key. The repository holds the files it wrote (`outputs/bakeoff/kaggle2/`) and the runner (`scripts/bakeoff_runner.py`). `requirements.txt` does not include the GPU libraries (`torch`, `transformers`, `peft`, `accelerate`).
+- The tests use a stub client and no network. They check the logic of the system (governance rules, the gate, the parser, refusals of bad sheets, the tutor's safeguards), not the behaviour of the live models. The bake-off ran on Kaggle with two T4 GPUs and an API key. The repository holds the notebook that ran it (`kaggle_bakeoff.ipynb`), the files it wrote (`outputs/bakeoff/kaggle2/`) and the runner (`scripts/bakeoff_runner.py`). `requirements.txt` does not include the GPU libraries (`torch`, `transformers`, `peft`, `accelerate`).
 - The teacher's returned sheets and the governed store carry the reviewer's decisions and are not published. The notebook shows their results.
 
 ## Notes
