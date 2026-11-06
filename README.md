@@ -1,9 +1,16 @@
 # Industry-Integrated AI Systems Synthesis: A Governed Question Lifecycle for HKDSE ICT Paper 1A
 
 MSc in AI, Capstone #7 Final Synthesis Project.
-Repository: https://github.com/PHIacademy/msai-capstone-synthesis-project
 
 The system classifies, extends, checks and serves multiple-choice practice questions for the HKDSE ICT Paper 1A under teacher governance. The primary artifact is the notebook `integrated_system_v1.7.ipynb`. The reusable logic lives in `src/`, and the Streamlit chat page in `app/` calls the same code.
+
+The student-side tutor is agentic (Section 4.13 of the notebook). In Model mode a bounded Orchestrator and one Explainer worker run on Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) through the Anthropic API, and Haiku is also one of the three generators in the bake-off. Rules mode, the classifier and the gate call no language model. The key is read from `ANTHROPIC_API_KEY`; `.env.example` shows the format. The live run with the real model (twelve messages through both routers, and one Explainer session) is recorded in Section 4.13.11 of the notebook.
+
+<div align="center">
+  <a href="doc/app_ui.png">
+    <img src="doc/app_ui.png" alt="The student chat page" width="1000px">
+  </a>
+</div>
 
 It integrates methods from four earlier capstones:
 
@@ -26,6 +33,7 @@ It integrates methods from four earlier capstones:
 |-- README.md
 |-- requirements.txt                 direct dependencies (no GPU libraries)
 |-- .gitignore
+|-- .env.example                     template for the API key (copy to .env)
 |-- integrated_system_v1.7.ipynb     the submission notebook (executed)
 |-- kaggle_bakeoff.ipynb             Kaggle notebook that ran the generator bake-off (executed)
 |-- module_summary.pdf               the Reflective Synthesis Paper (PDF)
@@ -42,6 +50,8 @@ It integrates methods from four earlier capstones:
 |   |-- ict_curriculum.md            NOT in git: from Kaggle (HKEAA curriculum guide)
 |   |-- question/                    NOT in git: from Kaggle (question images)
 |   `-- state.sqlite                 NOT in git: the governed store
+|-- docs/
+|   `-- app_ui.png                   screenshot of the student chat page
 |-- models/
 |   `-- c5_adapter/                  LoRA adapter (adapter_config.json, adapter_model.safetensors)
 |-- outputs/
@@ -77,7 +87,7 @@ The notebook was run on Python 3.12.
 
 2. Download the Kaggle dataset ([capstone7_data](https://www.kaggle.com/datasets/stansir/capstone7-data)) and place its files in the folders shown above (`data/` and, if included, `outputs/`). The past-paper questions, images and curriculum guide are material of the Hong Kong Examinations and Assessment Authority (HKEAA); their source and copyright are stated on the dataset page.
 
-3. Optional: to use the language-model router or to re-run the live cells, put `ANTHROPIC_API_KEY` in a `.env` file in the project root (or in the environment). Nothing else needs a key.
+3. Optional: to use the language-model router (Model mode) or to re-run the live cells, copy `.env.example` to `.env` in the project root and replace the placeholder with your `ANTHROPIC_API_KEY` (or set it in the environment). Nothing else needs a key.
 
 ## Running
 
