@@ -4,14 +4,6 @@ MSc in AI, Capstone #7 Final Synthesis Project.
 
 The system classifies, extends, checks and serves multiple-choice practice questions for the HKDSE ICT Paper 1A under teacher governance. The primary artifact is the notebook `integrated_system_v1.7.ipynb`. The reusable logic lives in `src/`, and the Streamlit chat page in `app/` calls the same code.
 
-The student-side tutor is agentic (Section 4.13 of the notebook). In Model mode a bounded Orchestrator and one Explainer worker run on Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) through the Anthropic API, and Haiku is also one of the three generators in the bake-off. Rules mode, the classifier and the gate call no language model. The key is read from `ANTHROPIC_API_KEY`; `.env.example` shows the format. The live run with the real model (twelve messages through both routers, and one Explainer session) is recorded in Section 4.13.11 of the notebook.
-
-<div align="center">
-  <a href="doc/app_ui.png">
-    <img src="doc/app_ui.png" alt="The student chat page" width="1000px">
-  </a>
-</div>
-
 It integrates methods from four earlier capstones:
 
 | Capstone | Used for |
@@ -20,6 +12,14 @@ It integrates methods from four earlier capstones:
 | C3 Machine Learning | Question classifier (TF-IDF with a linear model, temporal split, abstention) |
 | C5 Generative AI | Candidate generators and the bake-off (LoRA TinyLlama, Gemma 4 E4B, Claude Haiku) |
 | C6 Agentic AI | The student-side tutor: a rule router, and a language-model Orchestrator with one Explainer worker |
+
+The student-side tutor is agentic (Section 4.13 of the notebook). In Model mode a bounded Orchestrator and one Explainer worker run on Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) through the Anthropic API, and Haiku is also one of the three generators in the bake-off. Rules mode, the classifier and the gate call no language model. The key is read from `ANTHROPIC_API_KEY`; `.env.example` shows the format. The live run with the real model (twelve messages through both routers, and one Explainer session) is recorded in Section 4.13.11 of the notebook.
+
+<div align="center">
+  <a href="doc/app_ui.png">
+    <img src="doc/app_ui.png" alt="The student chat page" width="1000px">
+  </a>
+</div>
 
 ## Links
 
